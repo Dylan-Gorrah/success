@@ -7,7 +7,9 @@ export default function WorkShowcase() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
     align: 'center',
-    skipSnaps: false
+    skipSnaps: false,
+    dragFree: false,
+    containScroll: 'trimSnaps'
   })
 
   const scrollPrev = useCallback(() => {
@@ -25,7 +27,6 @@ export default function WorkShowcase() {
       description: 'Sleek shopping experience with smooth animations and intuitive checkout flow.',
       category: 'Web Design',
       color: 'from-blue-500 to-purple-500',
-      // Replace with actual GIF URL
       gif: 'https://via.placeholder.com/600x400/1a1a1a/ffd700?text=E-Commerce+Demo'
     },
     {
@@ -92,7 +93,7 @@ export default function WorkShowcase() {
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
-                  className="flex-[0_0_90%] md:flex-[0_0_60%] min-w-0"
+                  className="flex-[0_0_85%] md:flex-[0_0_45%] lg:flex-[0_0_35%] min-w-0"
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -100,11 +101,12 @@ export default function WorkShowcase() {
                 >
                   <div className="glass-dark rounded-3xl overflow-hidden group cursor-pointer h-full">
                     {/* GIF Preview */}
-                    <div className="relative h-64 md:h-80 overflow-hidden bg-gradient-to-br from-gray-900 to-black">
+                    <div className="relative h-48 md:h-64 overflow-hidden bg-gradient-to-br from-gray-900 to-black">
                       <img 
                         src={project.gif} 
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
                       />
                       
                       {/* Overlay on Hover */}
@@ -125,7 +127,7 @@ export default function WorkShowcase() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-8">
+                    <div className="p-6 md:p-8">
                       {/* Vibe Badge */}
                       <div className="inline-block mb-4">
                         <div className={`px-4 py-1 rounded-full bg-gradient-to-r ${project.color} bg-opacity-10`}>
@@ -135,10 +137,10 @@ export default function WorkShowcase() {
                         </div>
                       </div>
 
-                      <h3 className="text-2xl font-display font-bold mb-3 text-white group-hover:text-gold-500 transition-colors">
+                      <h3 className="text-xl md:text-2xl font-display font-bold mb-3 text-white group-hover:text-gold-500 transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-gray-400 leading-relaxed">
+                      <p className="text-gray-400 text-sm md:text-base leading-relaxed">
                         {project.description}
                       </p>
                     </div>

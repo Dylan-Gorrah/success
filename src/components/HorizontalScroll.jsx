@@ -72,10 +72,10 @@ export default function HorizontalScroll() {
             <span className="text-sm text-gray-300">What We're All About</span>
           </motion.div>
 
-          <h2 className="text-5xl md:text-7xl font-display font-bold mb-6">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-display font-bold mb-6">
             What We <span className="text-gradient">Create</span>
           </h2>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Not just "services" — we build the stuff that makes your business actually work.
             <br />
             <span className="text-gold-500 font-semibold">Simple as that.</span>
@@ -86,105 +86,107 @@ export default function HorizontalScroll() {
       {/* Horizontal Scrolling Cards */}
       <motion.div
         style={{ x }}
-        className="flex gap-8 px-6"
+        className="flex gap-6 px-6"
       >
         {[...services, ...services].map((service, index) => (
           <motion.div
             key={index}
-            className="glass-dark p-10 rounded-3xl min-w-[450px] relative overflow-hidden group cursor-pointer"
+            className="flex-[0_0_75%] md:flex-[0_0_45%] lg:flex-[0_0_35%] min-w-0"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: (index % 4) * 0.1 }}
             whileHover={{ scale: 1.03, y: -12 }}
           >
-            {/* Badge */}
-            {service.badge && (
-              <motion.div
-                className="absolute top-6 right-6 glass px-3 py-1 rounded-full text-xs text-gold-500 font-semibold"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.3, type: "spring" }}
-              >
-                {service.badge}
-              </motion.div>
-            )}
+            <div className="glass-dark p-6 md:p-10 rounded-3xl relative overflow-hidden group cursor-pointer">
+              {/* Badge */}
+              {service.badge && (
+                <motion.div
+                  className="absolute top-6 right-6 glass px-3 py-1 rounded-full text-xs text-gold-500 font-semibold"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.3, type: "spring" }}
+                >
+                  {service.badge}
+                </motion.div>
+              )}
 
-            {/* Gradient Overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-            
-            {/* Glow Effect */}
-            <motion.div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{
-                background: `radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1), transparent 70%)` 
-              }}
-            />
-
-            {/* Icon with Animated Ring */}
-            <motion.div
-              className="relative w-20 h-20 mb-6"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.8 }}
-            >
-              {/* Pulsing Ring */}
+              {/* Gradient Overlay */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+              
+              {/* Glow Effect */}
               <motion.div
-                className="absolute inset-0 rounded-2xl border-2 border-gold-500"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 0, 0.5]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: `radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1), transparent 70%)` 
                 }}
               />
-              
-              {/* Icon Container */}
-              <div className="relative w-full h-full rounded-2xl glass flex items-center justify-center group-hover:bg-gold-500 transition-all duration-300">
-                <service.icon className="w-10 h-10 text-gold-500 group-hover:text-black transition-colors duration-300" />
-              </div>
-            </motion.div>
 
-            {/* Content */}
-            <div className="relative z-10">
-              <p className="text-sm text-gold-500 font-semibold mb-2 uppercase tracking-wider">
-                {service.subtitle}
-              </p>
-              <h3 className="text-3xl font-display font-bold mb-4 text-white group-hover:text-gold-500 transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                {service.description}
-              </p>
-
-              {/* Features */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {service.features.map((feature, idx) => (
-                  <span
-                    key={idx}
-                    className="glass px-3 py-1 rounded-full text-xs text-gray-400 group-hover:text-gold-500 transition-colors"
-                  >
-                    {feature}
-                  </span>
-                ))}
-              </div>
-
-              {/* Arrow */}
+              {/* Icon with Animated Ring */}
               <motion.div
-                className="text-gold-500 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                initial={{ x: -10 }}
-                whileHover={{ x: 0 }}
+                className="relative w-16 h-16 mb-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.8 }}
               >
-                <span className="font-display font-semibold">Explore</span>
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  →
-                </motion.span>
+                {/* Pulsing Ring */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border-2 border-gold-500"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0, 0.5]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Icon Container */}
+                <div className="relative w-full h-full rounded-2xl glass flex items-center justify-center group-hover:bg-gold-500 transition-all duration-300">
+                  <service.icon className="w-8 h-8 text-gold-500 group-hover:text-black transition-colors duration-300" />
+                </div>
               </motion.div>
+
+              {/* Content */}
+              <div className="relative z-10">
+                <p className="text-xs md:text-sm text-gold-500 font-semibold mb-2 uppercase tracking-wider">
+                  {service.subtitle}
+                </p>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-display font-bold mb-4 text-white group-hover:text-gold-500 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-gray-400 text-sm md:text-base lg:text-lg leading-relaxed mb-6">
+                  {service.description}
+                </p>
+
+                {/* Features */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {service.features.map((feature, idx) => (
+                    <span
+                      key={idx}
+                      className="glass px-2 py-1 md:px-3 md:py-1 rounded-full text-xs text-gray-400 group-hover:text-gold-500 transition-colors"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Arrow */}
+                <motion.div
+                  className="text-gold-500 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                  initial={{ x: -10 }}
+                  whileHover={{ x: 0 }}
+                >
+                  <span className="font-display font-semibold text-sm md:text-base">Explore</span>
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         ))}
